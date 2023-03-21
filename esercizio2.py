@@ -27,11 +27,14 @@ def MassaCorporea():
     IMC = int(peso/(altezza ** 2))
     if IMC <= 19:
         risultato = "sei sottopeso rafy"
+        immagine = "./static/images/fiorentina.jpg"
     elif IMC > 19 and IMC < 25:
         risultato = "sei normale rafy"
+        immagine = "./static/images/pasta.jpg"
     elif IMC >= 25:
         risultato = "sei obeso rafy"
-    return render_template('risultato.html',risultato = risultato, IMC = IMC)
+        immagine = "./static/images/insalata.jpg"
+    return render_template('risultato.html',risultato = risultato, IMC = IMC, immagine=immagine)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
