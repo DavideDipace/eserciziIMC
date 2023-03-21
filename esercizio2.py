@@ -21,16 +21,17 @@ def login():
 
 @app.route('/MassaCorporea', methods = ['GET'])
 def MassaCorporea():
-    peso = request.args.get("peso")
-    altezza = request.args.get("altezza")
-    IMC = peso/(altezza * altezza)
+    peso = float(request.args.get("peso"))
+    altezza = float(request.args.get("altezza")) / 100
+    
+    IMC = int(peso/(altezza ** 2))
     if IMC <= 19:
-        print("sei sottopeso rafy")
-    elif IMC > 19 & IMC <= 25  :
-        print("sei normale rafy")
-    elif IMC >= 30:
-        print("sei obeso rafy")
-    return render_template('risultato.html',IMC= IMC)
+        risultato = "sei sottopeso rafy"
+    elif IMC > 19 and IMC < 25:
+        risultato = "sei normale rafy"
+    elif IMC >= 25:
+        risultato = "sei obeso rafy"
+    return render_template('risultato.html',risultato = risultato, IMC = IMC)
 
 if __name__ == '__main__':
   app.run(host='0.0.0.0', port=3245, debug=True)
